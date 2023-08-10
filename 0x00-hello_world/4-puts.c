@@ -1,6 +1,7 @@
-#include <stdio.h>
+#include <unistd.h>
+
 int main(void)
 {
-    puts("Programming is like building a multilingual puzzle");
+    write(1, "Programming is like building a multilingual puzzle\n", 50);
     return (0);
 }
