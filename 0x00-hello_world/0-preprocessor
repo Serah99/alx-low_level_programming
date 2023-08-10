@@ -1,4 +1,2 @@
 #!/bin/bash
-
-# Preprocess the C file using gcc
 gcc -E $CFILE -o c
