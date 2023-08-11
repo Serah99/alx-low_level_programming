@@ -7,15 +7,6 @@
  */
 int main(void)
 {
-    char str[] = "Programming is like building a multilingual puzzle";
-    int i = 0;
-
-    while (str[i])
-    {
-        putchar(str[i]);
-        i++;
-    }
-    putchar('\n');
-
+    puts("Programming is like building a multilingual puzzle");
     return (0);
 }
