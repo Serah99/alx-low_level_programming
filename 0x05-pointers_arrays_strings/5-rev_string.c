@@ -1,28 +1,24 @@
 #include "main.h"
 
 /**
- * puts2 - Prints one character out of two, starting with the first one.
- * @str: The string to be processed.
- *
- * Description: Given a string, this function prints every other character,
- * starting from the first character. The output is followed by a newline.
+ * rev_string - Reverses a string
+ * @s: Input string
+ * Return: String in reverse
  */
-void puts2(char *str)
+
+void rev_string(char *s)
 {
-	int length = 0;
+	char rev = s[0];
+	int counter = 0;
 	int i;
 
-	// Calculate the string length
-	while (str[length] != '\0')
+	while (s[counter] != '\0')
+	counter++;
+	for (i = 0; i < counter; i++)
 	{
-		length++;
+		counter--;
+		rev = s[i];
+		s[i] = s[counter];
+		s[counter] = rev;
 	}
-
-	// Print every other character
-	for (i = 0; i < length; i += 2)
-	{
-		_putchar(str[i]);
-	}
-
-	_putchar('\n');
 }
