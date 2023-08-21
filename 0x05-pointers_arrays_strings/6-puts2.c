@@ -1,28 +1,15 @@
 #include "main.h"
 
 /**
- * puts2 - Prints one character out of two, starting with the first one.
- * @str: The string to be processed.
- *
- * Description: Given a string, this function prints every other character,
- * starting from the first character. The output is followed by a newline.
+ * puts2 - Prints alternate chars of a string.
+ * @str: Input string.
  */
 void puts2(char *str)
 {
-	int length = 0;
-	int i;
+	int i = 0;
 
-	// Calculate the string length
-	while (str[length] != '\0')
-	{
-		length++;
-	}
-
-	// Print every other character
-	for (i = 0; i < length; i += 2)
-	{
+	for (; str[i]; i += 2)
 		_putchar(str[i]);
-	}
 
 	_putchar('\n');
 }
