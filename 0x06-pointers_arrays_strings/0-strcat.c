@@ -1,29 +1,17 @@
 #include <stdio.h>
 
-char *_strcat(char *d, char *s)
-{
-char *orig_d = d;
-
-    while (*d)
-    {
-        d++;
-    }
-
-    while (*s)
-    {
-        *d = *s;
-        d++;
-        s++;
-    }
-
-    *d = '\0';
-    return orig_d;
+char *_strcat(char *dest, char *src) {
+    char *init_dest = dest;
+    while (*dest) dest++;
+    while (*src) *dest++ = *src++;
+    *dest = '\0';
+    return init_dest;
 }
 
-int main(void)
-{
-    char d[100] = "Hello, ";
-    char s[] = "World!";
-    printf("%s\n", _strcat(d, s));
+// Testing the function
+int main() {
+    char dest[100] = "Hello, ";
+    char src[] = "World!";
+    printf("%s\n", _strcat(dest, src));  // Expected: Hello, World!
     return 0;
 }
