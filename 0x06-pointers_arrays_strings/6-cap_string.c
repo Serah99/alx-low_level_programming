@@ -28,10 +28,8 @@ char *cap_string(char *s)
 		    s[idx - 1] == ')' ||
 		    s[idx - 1] == '{' ||
 		    s[idx - 1] == '}' ||
-		    idx == 0)
-			s[idx] -= 32;
-
-		idx++;
-	}
-
-	return (s);}
+                    idx == 0)
+s[idx] -= 32;
+idx++;
+}
+return (s);}
