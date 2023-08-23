@@ -34,5 +34,4 @@ char *cap_string(char *s)
 		idx++;
 	}
 
-	return (s);
-}
+	return (s);}
