@@ -2,7 +2,7 @@
 
 char *_strcat(char *d, char *s)
 {
-    char *orig_d = d;
+char *orig_d = d;
 
     while (*d)
     {
