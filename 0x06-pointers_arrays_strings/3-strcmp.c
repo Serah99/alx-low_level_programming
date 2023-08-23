@@ -1,21 +1,24 @@
 #include "main.h"
 
 /**
- * str_compare - compares two strings
- * @str1: first string
- * @str2: second string
+ * _strcmp - compare string values
+ * @strA: input value
+ * @strB: input value
  *
- * Return: difference between first non-matching characters
+ * Return: strA[pos] - strB[pos]
  */
-int str_compare(char *str1, char *str2)
+int _strcmp(char *strA, char *strB)
 {
-    int idx = 0;
+	int pos;
 
-    while (str1[idx] && str2[idx])
-    {
-        if (str1[idx] != str2[idx])
-            return str1[idx] - str2[idx];
-        idx++;
-    }
-    return str1[idx] - str2[idx];
+	pos = 0;
+	while (strA[pos] != '\0' && strB[pos] != '\0')
+	{
+		if (strA[pos] != strB[pos])
+		{
+			return (strA[pos] - strB[pos]);
+		}
+		pos++;
+	}
+	return (0);
 }
