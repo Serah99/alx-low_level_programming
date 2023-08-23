@@ -2,8 +2,8 @@
 
 /**
  * leet - encode into 1337speak
- * @s: input value
- * Return: s value
+ * @s: input string
+ * Return: s
  */
 char *leet(char *s)
 {
