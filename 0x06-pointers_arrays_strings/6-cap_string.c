@@ -23,5 +23,6 @@ char *_strncpy(char *target, char *source, int len)
 		target[idx] = '\0';
 		idx++;
 	}
-	return (target);
+	return (target);
 }
+
