@@ -1,28 +1,37 @@
 #include "main.h"
 
 /**
- * _strncpy - copies a string
- * @target: destination string
- * @source: source string
- * @len: number of bytes to copy
+ * cap_string - Capitalizes all words in a string
+ * @s: string to modify
  *
- * Return: pointer to the resulting string
+ * Return: Pointer to the modified string
  */
-char *_strncpy(char *target, char *source, int len)
+char *cap_string(char *s)
 {
-	int idx;
+	int i = 0;
+	char separators[] = " \t\n,;.!?\"(){}";
 
-	idx = 0;
-	while (source[idx] != '\0' && idx < len)
+	if (s[0] >= 'a' && s[0] <= 'z')
 	{
-		target[idx] = source[idx];
-		idx++;
+		s[0] -= 32; /* Convert first character to uppercase */
 	}
-	while (idx < len)
+
+	while (s[i] != '\0')
 	{
-		target[idx] = '\0';
-		idx++;
+		/* Check if next character is lowercase */
+		if (s[i + 1] >= 'a' && s[i + 1] <= 'z')
+		{
+			for (int j = 0; separators[j] != '\0'; j++)
+			{
+				if (s[i] == separators[j])
+				{
+					s[i + 1] -= 32; /* Convert to uppercase */
+					break;
+				}
+			}
+		}
+		i++;
 	}
-	return (target);
+	return (s);
 }
 
