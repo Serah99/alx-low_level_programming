@@ -1,4 +1,4 @@
-#include "main.h"
+#include "holberton.h"
 
 /**
  * _strcat - concatenates two strings.
@@ -13,11 +13,11 @@ char *_strcat(char *dest, char *src)
 	dest_len = 0;
 	src_index = 0;
 
-	// Calculate the length of destination string
+	/* Calculate the length of destination string */
 	while (dest[dest_len] != '\0')
 		dest_len++;
 
-	// Append the source string to destination string
+	/* Append the source string to destination string */
 	while (src[src_index] != '\0' && dest_len < 97)
 	{
 		dest[dest_len] = src[src_index];
@@ -25,7 +25,8 @@ char *_strcat(char *dest, char *src)
 		src_index++;
 	}
 
-	dest[dest_len] = '\0'; // Null terminate the concatenated string
+	/* Null terminate the concatenated string */
+	dest[dest_len] = '\0';
 	return (dest);
 }
 
