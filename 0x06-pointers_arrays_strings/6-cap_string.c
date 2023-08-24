@@ -1,37 +1,26 @@
-#include "main.h"
-
+#include "holberton.h"
 /**
- * cap_string - Capitalizes all words in a string
- * @s: string to modify
- *
- * Return: Pointer to the modified string
+ * _strcat - concatenates 2 strings.
+ * @dest: string with concatenation
+ * @src: string to be concatenated
+ * Return: Always 0.
  */
-char *cap_string(char *s)
+char *_strcat(char *dest, char *src)
 {
-	int i = 0;
-	char separators[] = " \t\n,;.!?\"(){}";
+	int lengthD, lengthS;
 
-	if (s[0] >= 'a' && s[0] <= 'z')
-	{
-		s[0] -= 32; /* Convert first character to uppercase */
-	}
+	lengthD = 0;
+	lengthS = 0;
 
-	while (s[i] != '\0')
+	while (*(dest + lengthD) != '\0')
+		lengthD++;
+
+	while (*(src + lengthS) != '\0' && lengthD < 97)
 	{
-		/* Check if next character is lowercase */
-		if (s[i + 1] >= 'a' && s[i + 1] <= 'z')
-		{
-			for (int j = 0; separators[j] != '\0'; j++)
-			{
-				if (s[i] == separators[j])
-				{
-					s[i + 1] -= 32; /* Convert to uppercase */
-					break;
-				}
-			}
-		}
-		i++;
+		*(dest + lengthD) = *(src + lengthS);
+		lengthD++;
+		lengthS++;
 	}
-	return (s);
+	*(dest + lengthD) = '\0';
+	return (dest);
 }
-
