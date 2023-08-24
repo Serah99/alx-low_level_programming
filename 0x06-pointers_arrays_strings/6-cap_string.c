@@ -13,18 +13,15 @@ char *_strncpy(char *target, char *source, int len)
 	int idx;
 
 	idx = 0;
-
 	while (source[idx] != '\0' && idx < len)
 	{
 		target[idx] = source[idx];
 		idx++;
 	}
-
 	while (idx < len)
 	{
 		target[idx] = '\0';
 		idx++;
 	}
-
-	return (target);
+	return (target);
 }
