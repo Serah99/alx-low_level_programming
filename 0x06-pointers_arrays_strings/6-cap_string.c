@@ -1,38 +1,30 @@
 #include "main.h"
 
 /**
- * cap_string - Capitalizes all words of a string.
- * @str: The string to be capitalized.
+ * _strncpy - copies a string
+ * @target: destination string
+ * @source: source string
+ * @len: number of bytes to copy
  *
- * Return: A pointer to the changed string.
+ * Return: pointer to the resulting string
  */
-char *cap_string(char *str)
+char *_strncpy(char *target, char *source, int len)
 {
-	int index = 0;
+	int idx;
 
-	while (str[index])
+	idx = 0;
+
+	while (source[idx] != '\0' && idx < len)
 	{
-		while (!(str[index] >= 'a' && str[index] <= 'z'))
-			index++;
-
-		if (str[index - 1] == ' ' ||
-		    str[index - 1] == '\t' ||
-		    str[index - 1] == '\n' ||
-		    str[index - 1] == ',' ||
-		    str[index - 1] == ';' ||
-		    str[index - 1] == '.' ||
-		    str[index - 1] == '!' ||
-		    str[index - 1] == '?' ||
-		    str[index - 1] == '"' ||
-		    str[index - 1] == '(' ||
-		    str[index - 1] == ')' ||
-		    str[index - 1] == '{' ||
-		    str[index - 1] == '}' ||
-		    index == 0)
-			str[index] -= 32;
-
-		index++;
+		target[idx] = source[idx];
+		idx++;
 	}
 
-	return (str);
+	while (idx < len)
+	{
+		target[idx] = '\0';
+		idx++;
+	}
+
+	return (target);
 }
