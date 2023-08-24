@@ -2,29 +2,29 @@
 
 /**
  * _strncpy - copies a string
- * @target: destination string
- * @source: source string
- * @len: number of bytes to copy
+ * @dest: destination string
+ * @src: source string
+ * @n: number of bytes to copy
  *
  * Return: pointer to the resulting string
  */
-char *_strncpy(char *target, char *source, int len)
+char *_strncpy(char *dest, char *src, int n)
 {
-	int idx;
+	int i;
 
-	idx = 0;
+	i = 0;
 
-	while (source[idx] != '\0' && idx < len)
+	while (src[i] != '\0' && i < n)
 	{
-		target[idx] = source[idx];
-		idx++;
+		dest[i] = src[i];
+		i++;
 	}
 
-	while (idx < len)
+	while (i < n)
 	{
-		target[idx] = '\0';
-		idx++;
+		dest[i] = '\0';
+		i++;
 	}
 
-	return (target);
+	return (dest);
 }
