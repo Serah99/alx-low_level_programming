@@ -1,21 +1,22 @@
 #include "main.h"
 
 /**
- * copy_mem - Function to copy memory region.
- * @d: Target memory location.
- * @s: Source memory location.
- * @count: Bytes to copy.
+ * _memcpy - Copies a memory segment.
+ * @tgt: Target memory segment.
+ * @org: Original memory segment to copy from.
+ * @bytes: Quantity of bytes to copy.
  *
- * Return: Pointer to target memory location.
+ * Return: Pointer to the target memory segment.
  */
-char *copy_mem(char *d, char *s, unsigned int count)
+char *_memcpy(char *tgt, char *org, unsigned int bytes)
 {
-	unsigned int idx = 0;
+	int k = 0;
+	int j = bytes;
 
-	while (idx < count)
+	for (; k < j; k++)
 	{
-		d[idx] = s[idx];
-		idx++;
+		tgt[k] = org[k];
+		bytes--;
 	}
-	return (d);
+	return (tgt);
 }
