@@ -1,26 +1,36 @@
 #include "main.h"
+#include <stddef.h>
 
 /**
- * _strstr - Find a substring.
- * @str: main string.
- * @substr: substring to locate.
- * Return: Pointer to beginning of the located substring, or NULL.
+ * _strstr - Locates a substring.
+ * @mainstr: main string to be searched
+ * @substr: substring to be located
+ * Return: mainstr or NULL.
  */
-char *_strstr(char *str, char *substr)
+char *_strstr(char *mainstr, char *substr)
 {
-	for (; *str != '\0'; str++)
+	if (*substr == '\0')
 	{
-		char *begin = str;
+		return (mainstr);
+	}
+
+	while (*mainstr != '\0')
+	{
+		char *start = mainstr;
 		char *pattern = substr;
 
-		while (*begin == *pattern && *pattern != '\0')
+		while (*pattern != '\0' && *start == *pattern)
 		{
-			begin++;
+			start++;
 			pattern++;
 		}
 
 		if (*pattern == '\0')
-			return (str);
+		{
+			return (mainstr);
+		}
+
+		mainstr++;
 	}
 
 	return (NULL);
