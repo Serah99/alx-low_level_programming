@@ -1,22 +1,27 @@
 #include "main.h"
+#include <stddef.h>
 
 /**
- * _strpbrk - Search a string for any set of bytes.
- * @str: the main string.
- * @set: set of characters to locate.
- * Return: Pointer to byte in `str` that matches one in `set`, or NULL.
+ * _strpbrk - Locate the first occurrence in a string.
+ * @str: main string pointer.
+ * @search: chars to be located.
+ * Return: str if found or NULL if not.
  */
-char *_strpbrk(char *str, char *set)
+char *_strpbrk(char *str, char *search)
 {
-	int idx;
-
-	while (*str)
+	while (*str != '\0')
 	{
-		for (idx = 0; set[idx]; idx++)
+		char *curr_search = search;
+
+		while (*curr_search != '\0')
 		{
-			if (*str == set[idx])
+			if (*str == *curr_search)
+			{
 				return (str);
+			}
+			curr_search++;
 		}
+
 		str++;
 	}
 
