@@ -2,24 +2,24 @@
 #include <stddef.h>
 
 /**
- * _strpbrk - Locate the first occurrence in a string.
- * @str: main string pointer.
- * @search: chars to be located.
- * Return: str if found or NULL if not.
+ * _strpbrk - Search for a string of any set of bytes
+ * @str: main string pointer
+ * @tokens: chars to be located
+ * Return: str if found or NULL if not found
  */
-char *_strpbrk(char *str, char *search)
+char *_strpbrk(char *str, char *tokens)
 {
 	while (*str != '\0')
 	{
-		char *curr_search = search;
+		char *curr_token = tokens;
 
-		while (*curr_search != '\0')
+		while (*curr_token != '\0')
 		{
-			if (*str == *curr_search)
+			if (*str == *curr_token)
 			{
 				return (str);
 			}
-			curr_search++;
+			curr_token++;
 		}
 
 		str++;
