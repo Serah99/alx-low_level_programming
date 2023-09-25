@@ -1,88 +1,99 @@
 #include "lists.h"
+#include <stdlib.h>
 #include <stdio.h>
 
-size_t find_loop_length(const listint_t *head);
-size_t safe_listint_print(const listint_t *head);
-
 /**
-* find_loop_length - Determines the number of unique nodes
-*                    in a potentially looped listint_t list.
-* @head: A pointer to the head of the listint_t to analyze.
-*
-* Return: If the list is not looped - 0.
-*         Otherwise - the number of unique nodes in the list.
-*/
-size_t find_loop_length(const listint_t *head)
+ * print_listint_safe - function that prints a listint_t linked list.
+ * @head: pointer to the start of linked list.
+ *
+ * This function can print lists with a loop.
+ * You should go through the list only once.
+ * If the function fails, exit the program with status 98.
+ *
+ * Return: the number of nodes in the list.
+ */
+size_t print_listint_safe(const listint_t *start)
 {
-const listint_t *slow_ptr, *fast_ptr;
-size_t unique_nodes = 1;
+	listnode_t *node_addrs = NULL; /* stores address of nodes */
+	size_t node_count = 0;
 
-if (head == NULL || head->next == NULL)
-return (0);
-
-slow_ptr = head->next;
-fast_ptr = (head->next)->next;
-
-while (fast_ptr)
-{
-if (slow_ptr == fast_ptr)
-{
-slow_ptr = head;
-while (slow_ptr != fast_ptr)
-{
-unique_nodes++;
-slow_ptr = slow_ptr->next;
-fast_ptr = fast_ptr->next;
-}
-
-slow_ptr = slow_ptr->next;
-while (slow_ptr != fast_ptr)
-{
-unique_nodes++;
-slow_ptr = slow_ptr->next;
-}
-
-return (unique_nodes);
-}
-
-slow_ptr = slow_ptr->next;
-fast_ptr = (fast_ptr->next)->next;
-}
-
-return (0);
+	/* while you have not encountered a loop */
+	while (!has_node(node_addrs, start))
+	{
+		/* check if the malloc fails then exit */
+		if (!push_nodeptr(&node_addrs, start))
+		{
+			free_listnode(node_addrs);
+			exit(98);
+		}
+		/* print address of current node and the value of field n */
+		printf("[%p] %d\n", (void *)start, start->n);
+		/* count the nodes */
+		node_count++;
+		start = start->next;
+	}
+	/* if you encounter a loop */
+	if (start != NULL)
+	/* print where the loop starts */
+		printf("-> [%p] %d\n", (void *)start, start->n);
+	free_listnode(node_addrs);
+	/* return number of nodes */
+	return (node_count);
 }
 
 /**
-* safe_listint_print - Prints a listint_t list in a safe way.
-* @head: A pointer to the head of the listint_t list.
-*
-* Return: The number of nodes in the list.
-*/
-size_t safe_listint_print(const listint_t *head)
+ * push_nodeptr - adds a new node at the beginning of a listint_t list
+ * @head: pointer to the pointer to the first node
+ * @ptr: the value of the new node
+ *
+ * Return: the address of the new element, or NULL if it failed
+ */
+listnode_t *push_nodeptr(listnode_t **head, const listint_t *ptr)
 {
-size_t node_count, node_idx = 0;
+	listnode_t *newElem;
 
-node_count = find_loop_length(head);
-
-if (node_count == 0)
-{
-for (; head != NULL; node_count++)
-{
-printf("[%p] %d\n", (void *)head, head->n);
-head = head->next;
-}
-}
-
-else
-{
-for (node_idx = 0; node_idx < node_count; node_idx++)
-{
-printf("[%p] %d\n", (void *)head, head->n);
-head = head->next;
+	/* create new node */
+	newElem = malloc(sizeof(listnode_t));
+	/* if malloc fails return NULL */
+	if (newElem == NULL)
+		return (NULL);
+	newElem->ptr = (listint_t *)ptr;
+	newElem->next = *head;
+	*head = newElem;
+	return (newElem);
 }
 
-printf("-> [%p] %d\n", (void *)head, head->n);
+/**
+ * free_listnode - frees a free_listnode list
+ * @head: pointer to first node of the list
+ */
+void free_listnode(listnode_t *head)
+{
+	if (head == NULL)
+		return;
+	free_listnode(head->next);
+	free(head);
 }
 
-return (node_count);
+/**
+ * has_node - checks whether a given address is in a given list
+ * @head: first node in the list
+ * @ptr: address
+ *
+ * Return: 1 if address is in nodes. Otherwise 0
+ */
+int has_node(listnode_t *head, const listint_t *ptr)
+{
+	/* if we have no address lists return 1 */
+	if (ptr == NULL)
+		return (1);
+	/* traverse the list */
+	while (head != NULL)
+	{
+		/* if the address is in a given list then return 1 */
+		if (ptr == head->ptr)
+			return (1);
+		head = head->next;
+	}
+return (0);
 }
