@@ -1,13 +1,13 @@
 #include "lists.h"
 
 /**
-* add_nodeint_front - adds a new node at the start of a linked list
-* @top: pointer to the first node in the list
-* @val: data to be placed in the new node
+* prepend_nodeint - appends a fresh node at the start of a linked list
+* @start: pointer to the initial node in the list
+* @data: value to be included in the new node
 *
-* Return: pointer to the new node, or NULL if operation doesn't succeed
+* Return: pointer to the newly appended node, or NULL on failure
 */
-listint_t *add_nodeint_front(listint_t **top, const int val)
+listint_t *prepend_nodeint(listint_t **start, const int data)
 {
 listint_t *new_node;
 
@@ -15,9 +15,9 @@ new_node = malloc(sizeof(listint_t));
 if (!new_node)
 return (NULL);
 
-new_node->n = val;
-new_node->next = *top;
-*top = new_node;
+new_node->n = data;
+new_node->next = *start;
+*start = new_node;
 
 return (new_node);
 }
