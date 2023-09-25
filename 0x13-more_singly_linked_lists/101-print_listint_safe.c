@@ -3,8 +3,8 @@
 #include <stdio.h>
 
 /**
- * print_listint_safe - function that prints a listint_t linked list.
- * @head: pointer to the start of linked list.
+ * print_listint_safe - function that  prints a listint_t linked list.
+ * @head: pointer to the head of linked list.
  *
  * This function can print lists with a loop.
  * You should go through the list only once.
@@ -12,55 +12,57 @@
  *
  * Return: the number of nodes in the list.
  */
-size_t print_listint_safe(const listint_t *start)
+
+size_t print_listint_safe(const listint_t *head)
 {
-	listnode_t *node_addrs = NULL; /* stores address of nodes */
-	size_t node_count = 0;
+	listnode_t *nodes = NULL; /* stores address of nodes */
+	size_t count = 0;
 
 	/* while you have not encountered a loop */
-	while (!has_node(node_addrs, start))
+	while (!is_in_nodes(nodes, head))
 	{
 		/* check if the malloc fails then exit */
-		if (!push_nodeptr(&node_addrs, start))
+		if (!add_nodeptr(&nodes, head))
 		{
-			free_listnode(node_addrs);
+			free_listnode(nodes);
 			exit(98);
 		}
 		/* print address of current node and the value of field n */
-		printf("[%p] %d\n", (void *)start, start->n);
+		/* cast it a void pointer in order to print the address */
+		printf("[%p] %d\n", (void *)head, head->n);
 		/* count the nodes */
-		node_count++;
-		start = start->next;
+		count++;
+		head = head->next;
 	}
 	/* if you encounter a loop */
-	if (start != NULL)
+	if (head != NULL)
 	/* print where the loop starts */
-		printf("-> [%p] %d\n", (void *)start, start->n);
-	free_listnode(node_addrs);
+		printf("-> [%p] %d\n", (void *)head, head->n);
+	free_listnode(nodes);
 	/* return number of nodes */
-	return (node_count);
+	return (count);
 }
 
 /**
- * push_nodeptr - adds a new node at the beginning of a listint_t list
+ * add_nodeptr - adds a new node at the beginning of a listint_t list
  * @head: pointer to the pointer to the first node
  * @ptr: the value of the new node
  *
  * Return: the address of the new element, or NULL if it failed
  */
-listnode_t *push_nodeptr(listnode_t **head, const listint_t *ptr)
+listnode_t *add_nodeptr(listnode_t **head, const listint_t *ptr)
 {
-	listnode_t *newElem;
+	listnode_t *new_node;
 
 	/* create new node */
-	newElem = malloc(sizeof(listnode_t));
+	new_node = malloc(sizeof(listnode_t));
 	/* if malloc fails return NULL */
-	if (newElem == NULL)
+	if (new_node == NULL)
 		return (NULL);
-	newElem->ptr = (listint_t *)ptr;
-	newElem->next = *head;
-	*head = newElem;
-	return (newElem);
+	new_node->ptr = (listint_t *)ptr;
+	new_node->next = *head;
+	*head = new_node;
+	return (new_node);
 }
 
 /**
@@ -76,13 +78,13 @@ void free_listnode(listnode_t *head)
 }
 
 /**
- * has_node - checks whether a given address is in a given list
+ * is_in_nodes - checks whether a given address is in a given list
  * @head: first node in the list
  * @ptr: address
  *
  * Return: 1 if address is in nodes. Otherwise 0
  */
-int has_node(listnode_t *head, const listint_t *ptr)
+int is_in_nodes(listnode_t *head, const listint_t *ptr)
 {
 	/* if we have no address lists return 1 */
 	if (ptr == NULL)
@@ -95,5 +97,5 @@ int has_node(listnode_t *head, const listint_t *ptr)
 			return (1);
 		head = head->next;
 	}
-return (0);
+	return (0);
 }
