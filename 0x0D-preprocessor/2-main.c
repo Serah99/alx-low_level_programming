@@ -1,11 +1,10 @@
 #include <stdio.h>
-
 /**
- * primary - output print document name
+ * main - output print file name
  * Return: 0 always
  */
-int primary(void)
+int main(void)
 {
-	printf("%s\n", __BASE__);
+	printf("%s\n", __FILE__);
 	return (0);
 }
