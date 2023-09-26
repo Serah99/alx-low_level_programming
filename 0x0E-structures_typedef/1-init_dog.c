@@ -1,20 +1,19 @@
 #include <stdio.h>
-#include "pet.h"
-
+#include "dog.h"
 /**
- * initialize_pet - load variable of type struct pet
- * @p: struct for pet in pet.h
- * @pet_name: type char pointer
- * @pet_age: type float
- * @caretaker: type char pointer
+ * init_dog - load variable of type struct dog
+ * @d: struct for dog in dog.h
+ * @name: type char pointer
+ * @age: type float
+ * @owner: type char pointer
  * Return: 0.
  */
-void initialize_pet(struct pet *p, char *pet_name, float pet_age, char *caretaker)
+void init_dog(struct dog *d, char *name, float age, char *owner)
 {
-	if (p != NULL)
+	if (d != NULL)
 	{
-		p->pet_name = pet_name;
-		p->pet_age = pet_age;
-		p->caretaker = caretaker;
+		d->name = name;
+		d->age = age;
+		d->owner = owner;
 	}
 }
