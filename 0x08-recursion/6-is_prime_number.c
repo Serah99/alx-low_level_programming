@@ -1,32 +1,32 @@
 #include "main.h"
 
-int evaluate_prime(int val, int counter);
+int actual_prime(int value, int iter);
 
 /**
- * determine_prime - says if an integer is a prime number or not
- * @val: number to evaluate
+ * is_prime_number - says if an integer is a prime number or not
+ * @value: number to evaluate
  *
- * Return: 1 if val is a prime number, 0 if not
+ * Return: 1 if value is a prime number, 0 if not
  */
-int determine_prime(int val)
+int is_prime_number(int value)
 {
-	if (val <= 1)
+	if (value <= 1)
 		return (0);
-	return (evaluate_prime(val, val - 1));
+	return (actual_prime(value, value - 1));
 }
 
 /**
- * evaluate_prime - calculates if a number is prime recursively
- * @val: number to evaluate
- * @counter: iterator
+ * actual_prime - calculates if a number is prime recursively
+ * @value: number to evaluate
+ * @iter: iterator
  *
- * Return: 1 if val is prime, 0 if not
+ * Return: 1 if value is prime, 0 if not
  */
-int evaluate_prime(int val, int counter)
+int actual_prime(int value, int iter)
 {
-	if (counter == 1)
+	if (iter == 1)
 		return (1);
-	if (val % counter == 0 && counter > 0)
+	if (value % iter == 0 && iter > 0)
 		return (0);
-	return (evaluate_prime(val, counter - 1));
+	return (actual_prime(value, iter - 1));
 }

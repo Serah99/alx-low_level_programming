@@ -1,17 +1,17 @@
 #include "main.h"
 
 /**
- * compute_power - returns the value of base raised to the power of exp
+ * _pow_recursion - returns the value of base raised to the power of exponent
  * @base: value to raise
- * @exp: exponent
+ * @exponent: power
  *
- * Return: result of the power computation
+ * Return: result of the power
  */
-int compute_power(int base, int exp)
+int _pow_recursion(int base, int exponent)
 {
-	if (exp < 0)
+	if (exponent < 0)
 		return (-1);
-	if (exp == 0)
+	if (exponent == 0)
 		return (1);
-	return (base * compute_power(base, exp - 1));
+	return (base * _pow_recursion(base, exponent - 1));
 }
