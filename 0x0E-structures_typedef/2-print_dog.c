@@ -1,26 +1,25 @@
 #include <stdio.h>
-#include "puppy.h"
-
+#include "dog.h"
 /**
- * display_puppy - display puppy data
- * @p: struct for puppy in puppy.h
+ * print_dog - write dog data
+ * @d: struct for dog in dog.h
  * Return: 0.
  */
-void display_puppy(struct puppy *p)
+void print_dog(struct dog *d)
 {
-	if (p == NULL)
+	if (d == NULL)
 	{
 		return;
 	}
 
-	printf("Name: %s\n", (p->puppy_name != NULL) ? p->puppy_name : "(nil)");
-	if (p->puppy_age < 0)
+	printf("Name: %s\n", (d->name != NULL) ? d->name : "(nil)");
+	if (d->age < 0)
 	{
 		printf("Age: (nil)\n");
 	}
 	else
 	{
-		printf("Age: %f\n", p->puppy_age);
+		printf("Age: %f\n", d->age);
 	}
-	printf("Owner: %s\n", (p->caretaker != NULL) ? p->caretaker : "(nil)");
+	printf("Owner: %s\n", (d->owner != NULL) ? d->owner : "(nil)");
 }
