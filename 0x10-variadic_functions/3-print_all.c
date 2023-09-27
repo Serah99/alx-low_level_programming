@@ -3,48 +3,48 @@
 #include <stdio.h>
 
 /**
- * print_everything - prints anything
- * @pattern: list of types of arguments passed to the function
+ * print_all - prints anything
+ * @format: list of types of arguments passed to the function
  */
-void print_everything(const char * const pattern, ...)
+void print_all(const char * const format, ...)
 {
-	int idx = 0;
-	char *content, *delimiter = "";
+	int i = 0;
+	char *str, *sep = "";
 
-	va_list args;
+	va_list list;
 
-	va_start(args, pattern);
+	va_start(list, format);
 
-	if (pattern)
+	if (format)
 	{
-		while (pattern[idx])
+		while (format[i])
 		{
-			switch (pattern[idx])
+			switch (format[i])
 			{
 				case 'c':
-					printf("%s%c", delimiter, va_arg(args, int));
+					printf("%s%c", sep, va_arg(list, int));
 					break;
 				case 'i':
-					printf("%s%d", delimiter, va_arg(args, int));
+					printf("%s%d", sep, va_arg(list, int));
 					break;
 				case 'f':
-					printf("%s%f", delimiter, va_arg(args, double));
+					printf("%s%f", sep, va_arg(list, double));
 					break;
 				case 's':
-					content = va_arg(args, char *);
-					if (!content)
-						content = "(nil)";
-					printf("%s%s", delimiter, content);
+					str = va_arg(list, char *);
+					if (!str)
+						str = "(nil)";
+					printf("%s%s", sep, str);
 					break;
 				default:
-					idx++;
+					i++;
 					continue;
 			}
-			delimiter = ", ";
-			idx++;
+			sep = ", ";
+			i++;
 		}
 	}
 
 	printf("\n");
-	va_end(args);
+	va_end(list);
 }
